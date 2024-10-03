@@ -16,6 +16,7 @@ class DisplayActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
 
+
     }
     // TODO Step 3: Use returned value for lyricsDisplayTextView text size
 
