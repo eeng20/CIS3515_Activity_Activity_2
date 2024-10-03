@@ -15,7 +15,10 @@ class DisplayActivity : AppCompatActivity() {
     private val textSizeLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-
+        if (result.resultCode == Activity.RESULT_OK) {
+            val textSize = result.data?.getIntExtra("textSize", 24) ?: 24
+            lyricsDisplayTextView.textSize = textSize.toFloat()
+        }
 
     }
     // TODO Step 3: Use returned value for lyricsDisplayTextView text size
@@ -29,6 +32,10 @@ class DisplayActivity : AppCompatActivity() {
 
         lyricsDisplayTextView = findViewById(R.id.lyricsDisplayTextView)
         textSizeSelectorButton = findViewById(R.id.textSizeSelectorButton)
+        findViewById<Button>(R.id.textSizeSelectorButton).setOnClickListener {
+            val textSizeLauncherIntent = Intent(this, TextSizeActivity::class.java)
+            startActivity(textSizeLauncherIntent)
+        }
 
 
     }
