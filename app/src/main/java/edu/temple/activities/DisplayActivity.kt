@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -14,9 +15,9 @@ class DisplayActivity : AppCompatActivity() {
     // TODO Step 1: Launch TextSizeActivity when button clicked to allow selection of text size value
     private val textSizeLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) { result ->
+    ) { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val textSize = result.data?.getIntExtra("textSize", 24) ?: 24
+            val textSize = result.data?.getIntExtra("selectedTextSize", 16) ?: 24
             lyricsDisplayTextView.textSize = textSize.toFloat()
         }
 
@@ -34,7 +35,8 @@ class DisplayActivity : AppCompatActivity() {
         textSizeSelectorButton = findViewById(R.id.textSizeSelectorButton)
         findViewById<Button>(R.id.textSizeSelectorButton).setOnClickListener {
             val textSizeLauncherIntent = Intent(this, TextSizeActivity::class.java)
-            startActivity(textSizeLauncherIntent)
+            textSizeLauncher.launch(textSizeLauncherIntent)
+           // startActivity(textSizeLauncherIntent)
         }
 
 
