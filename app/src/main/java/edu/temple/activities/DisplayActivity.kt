@@ -36,7 +36,6 @@ class DisplayActivity : AppCompatActivity() {
         findViewById<Button>(R.id.textSizeSelectorButton).setOnClickListener {
             val textSizeLauncherIntent = Intent(this, TextSizeActivity::class.java)
             textSizeLauncher.launch(textSizeLauncherIntent)
-           // startActivity(textSizeLauncherIntent)
         }
 
 
